@@ -24,6 +24,8 @@ fun DeviceScreen(
     state: BluetoothUIState,
     onStartScan: () -> Unit,
     onStopScan: () -> Unit,
+    onStartServer: () -> Unit,
+    onDeviceClick: (BluetoothDevice) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -32,10 +34,10 @@ fun DeviceScreen(
         BluetoothDeviceList(
             pairedDevices = state.pairedDevices,
             scannedDevices = state.scannedDevices,
-            onClick = {},
+            onClick = onDeviceClick,
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f)
+                //.weight(1f)
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -46,6 +48,9 @@ fun DeviceScreen(
             }
             Button(onClick = onStopScan) {
                 Text(text = "Stop scan")
+            }
+            Button(onClick = onStartServer) {
+                Text(text = "Start server")
             }
         }
     }
